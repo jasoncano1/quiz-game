@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin: 0;
+    background: lightgray;
+    border-bottom: 2px solid black;
+}
+
+nav button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: purple;
+}
+
+main {
+    margin: 5vh 10%;
+    text-align: center;
+}
+
+button {
+    background: #351c75;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
