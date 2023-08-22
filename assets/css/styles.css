@@ -34,3 +34,14 @@ button {
     font-size: 20px;
 }
 
+#answers {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: 0 auto;
+}
+
+#answers button {
+    margin: 5px auto 5px 0;
+}
+
