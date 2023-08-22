@@ -1,6 +1,14 @@
 let clockId;
-let timer = 5;
+let timer = 75;
 let qIndex = 0;
+let status = document.getElementById('status');
+
+const resetGame = () => document.location.reload();
+
+const clearScores = () => {
+    localStorage.scores = JSON.stringify([]);
+    document.querySelector('ol').innerHTML = '';
+};
 
 const setScore = async () => {
     let scores = localStorage.scores ? JSON.parse(localStorage.scores) : [];
@@ -16,17 +24,24 @@ const setScore = async () => {
         document.querySelector('ol').innerHTML += `<li>${player.initials} - ${player.score}</li>`;
     });
 
+    main.innerHTML += `<button onclick="clearScores()">Clear Scores</button><button onclick="resetGame()">Play Again</button>`;
+};
+
+const setScore2 = async () => {
+    let scores = localStorage.scores ? JSON.parse(localStorage.scores) : [];
+    main.innerHTML = `<h1>High Scores</h1><ol id="scores"></ol>`;
+
+    scores.forEach(player => {
+        document.querySelector('ol').innerHTML += `<li>${player.initials} - ${player.score}</li>`;
+    });
 
     main.innerHTML += `<button onclick="clearScores()">Clear Scores</button><button onclick="resetGame()">Play Again</button>`;
-
 };
 
 const endGame = () => {
     clearInterval(clockId);
-    let { Q } = questions[qIndex];
-    main.innerHTML = `<h1>Game Over</h1><h3>You got ${timer} points!</h3><p>${Q}</p><p>Enter your initials: <input type="text" id="initials" maxlength="3"></p><button onclick="setScore()">Set Score</button>`;
+    main.innerHTML = `<h1>Game Over</h1><h3>You got ${timer} points!</h3><p>Enter your initials: <input type="text" id="initials" maxlength="3"></p><button onclick="setScore()">Set Score</button>`;
 };
-
 
 const init = () => {
     timer--;
@@ -35,15 +50,24 @@ const init = () => {
 };
 
 const handleAnswers = ans => {
-    if (ans != questions[qIndex].C) timer -= 10;
+    ans == questions[qIndex].C
+        ? (
+            status.innerHTML = '<h1 style="color:green;text-align:center; border-bottom:5px solid green">Correct!</h1>',
+            setTimeout(() => status.innerHTML = '', 1000)
+        )
+        : (
+            timer -= 10,
+            status.innerHTML = '<h1 style="color:red;text-align:center; border-bottom:5px solid red">Wrong!</h1>',
+            setTimeout(() => status.innerHTML = '', 1000)
+        ) 
 
     qIndex++;
     handleQuestions();
 };
 
 const handleQuestions = () => {
+    console.log(qIndex, questions.length);
     if (qIndex >= questions.length) {
-        clearInterval(clockId);
         return endGame();
     };
 
@@ -62,3 +86,4 @@ const clock = () => {
 }
 
 start.onclick = clock;
+scores.onclick = setScore2;

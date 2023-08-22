@@ -45,3 +45,16 @@ button {
     margin: 5px auto 5px 0;
 }
 
+li {
+    width: 100px;
+    margin: 5px auto;
+    background: lightgray;
+    padding: 5px;
+}
+
+#status {
+    margin: 0 auto;
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+}
