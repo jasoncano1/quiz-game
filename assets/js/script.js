@@ -49,8 +49,8 @@ const init = () => {
     if (timer < 1) endGame();
 };
 
-const handleAnswers = ans => {
-    ans == questions[qIndex].C
+function handleAnswers(e) {
+    e.target.innerHTML == questions[qIndex].C
         ? (
             status.innerHTML = '<h1 style="color:green;text-align:center; border-bottom:5px solid green">Correct!</h1>',
             setTimeout(() => status.innerHTML = '', 1000)
@@ -76,7 +76,7 @@ const handleQuestions = () => {
     main.innerHTML = `<h1>${Q}</h1><div id="answers"></div>`;
 
     A.forEach((answer) => {
-        answers.innerHTML += `<button onclick="handleAnswers('${answer}')">${answer}</button>`;
+        document.getElementById('answers').innerHTML += `<button class="answerBtn">${answer}</button>`;
     });
 };
 
@@ -87,3 +87,8 @@ const clock = () => {
 
 start.onclick = clock;
 scores.onclick = setScore2;
+main.onclick = (e) => {
+    if (e.target.className === 'answerBtn') {
+        handleAnswers(e);
+    }
+};
