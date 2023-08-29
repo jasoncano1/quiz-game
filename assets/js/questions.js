@@ -1,6 +1,6 @@
 const questions = [
     {
-        Q: 'What is the correct wau to write a JavaScript array?',
+        Q: 'What is the correct way to write a JavaScript array?',
         A: ['var colors = [red, green, blue]','var colors = (1:red, 2:green, 3:blue)','var colors = 1 = (red), 2 = (green), 3 = (blue)','var colors = red, green, blue'],
         C: 'var colors = [red, green, blue]'
     },
